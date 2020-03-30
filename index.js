@@ -222,7 +222,7 @@ const displayContactName = (res, contact) => {
 
 app.get('/', async(req, res) => {
   res.setHeader('Content-Type', 'text/html');
-  res.write(`<h2>HubSpot Fale Mais App Instalacao</h2>`);
+  // res.write(`<h2>HubSpot Fale Mais App Instalacao</h2>`);
   if (isAuthorized(req.sessionID)) {
     const accessToken = await getAccessToken(req.sessionID);
     const contact = await getContact(accessToken);
