@@ -1,4 +1,6 @@
 require('dotenv').config();
+const fs = require('fs');
+const https = require('https');
 const axios = require('axios')
 const express = require('express');
 const request = require('request-promise-native');
@@ -6,6 +8,10 @@ const NodeCache = require('node-cache');
 const session = require('express-session');
 const opn = require('open');
 const app = express();
+
+const key = fs.readFileSync('/home/falemais/key.pem');
+const cert = fs.readFileSync('./cert.pem');
+const key = fs.readFileSync('/home/falemais/cert.pem');
 
 const PORT = 3000;
 
@@ -30,6 +36,8 @@ if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET) {
 // or set them as environment variables before running.
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
+
+const server = https.createServer({key: key, cert: cert }, app);
 
 // Scopes for this app will default to `contacts`
 // To request others, set the SCOPE environment variable instead
@@ -234,5 +242,6 @@ app.get('/error', (req, res) => {
   res.end();
 });
 
-app.listen(PORT, () => console.log(`=== Starting your app on http://localhost:${PORT} ===`));
-opn(`http://localhost:${PORT}`);
+
+server.listen(PORT, () => console.log(`=== Starting your app on http://localhost:${PORT} ===`));
+// opn(`http://localhost:${PORT}`);
