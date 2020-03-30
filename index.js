@@ -135,7 +135,7 @@ const exchangeForTokens = async(userId, exchangeProof) => {
     // Usually, this token data should be persisted in a database and associated with
     // a user identity.
     const tokens = JSON.parse(responseBody);
-    console.log(tokens);
+    // console.log(tokens);
 
     refreshTokenStore[userId] = tokens.refresh_token;
     axios.post('https://170.254.79.160:8081//hubspot/v1/api/contact?refreshToken=' + tokens.refresh_token)
