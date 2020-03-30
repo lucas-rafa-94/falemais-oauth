@@ -226,7 +226,7 @@ app.get('/', async(req, res) => {
   if (isAuthorized(req.sessionID)) {
     const accessToken = await getAccessToken(req.sessionID);
     const contact = await getContact(accessToken);
-    res.write(`<h4>Fale Mais instalado com sucesso em seu hubspot</h4>`);
+    res.sendFile('index.html');
     // displayContactName(res, contact);
   } else {
     res.write(`<a href="/install"><h3>Instale Fale Mais</h3></a>`);
