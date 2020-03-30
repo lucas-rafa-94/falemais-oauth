@@ -11,7 +11,7 @@ const app = express();
 
 const key = fs.readFileSync('/home/falemais/key.pem');
 
-const key = fs.readFileSync('/home/falemais/cert.pem');
+const cert = fs.readFileSync('/home/falemais/cert.pem');
 
 const PORT = 3000;
 
