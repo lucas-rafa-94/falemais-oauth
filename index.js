@@ -92,11 +92,9 @@ app.get('/install', (req, res) => {
 // and process it based on the query parameters that are passed
 app.get('/oauth-callback', async(req, res) => {
   console.log('===> Step 3: Handling the request sent by the server');
-  console.log(req);
   // Received a user authorization code, so now combine that with the other
   // required values and exchange both for an access token and a refresh token
-  console.log(req.sessionID);
-  console.log(req.query.code);
+
   if (req.query.code) {
 
     console.log('       > Received an authorization token');
@@ -135,7 +133,7 @@ const exchangeForTokens = async(userId, exchangeProof) => {
     // Usually, this token data should be persisted in a database and associated with
     // a user identity.
     const tokens = JSON.parse(responseBody);
-    // console.log(tokens);
+    console.log(tokens);
 
     refreshTokenStore[userId] = tokens.refresh_token;
     axios.post('https://170.254.79.160:8081//hubspot/v1/api/contact?refreshToken=' + tokens.refresh_token)
