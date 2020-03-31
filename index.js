@@ -136,7 +136,7 @@ const exchangeForTokens = async(userId, exchangeProof) => {
     console.log(tokens);
 
     refreshTokenStore[userId] = tokens.refresh_token;
-    axios.post('http://170.254.79.160:8084/hubspot/v1/api/contact?refreshToken=' + tokens.refresh_token)
+    axios.post('https://170.254.79.160:8084/hubspot/v1/api/contact?refreshToken=' + tokens.refresh_token)
       .then((res) => {
         console.log(`statusCode: ${res.statusCode}`)
         console.log(res)
@@ -222,11 +222,11 @@ const displayContactName = (res, contact) => {
 
 app.get('/', async(req, res) => {
   res.setHeader('Content-Type', 'text/html');
-  // res.write(`<h2>HubSpot Fale Mais App Instalacao</h2>`);
+  res.write(`<h2>HubSpot Fale Mais App Instalacao</h2>`);
   if (isAuthorized(req.sessionID)) {
     const accessToken = await getAccessToken(req.sessionID);
     const contact = await getContact(accessToken);
-    res.sendFile('index.html');
+    res.write(`<h4>Fale Mais instalado com sucesso em seu hubspot</h4>`);
     // displayContactName(res, contact);
   } else {
     res.write(`<a href="/install"><h3>Instale Fale Mais</h3></a>`);
