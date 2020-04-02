@@ -57,7 +57,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
-
+app.use(express.static(__dirname));
 //================================//
 //   Running the OAuth 2.0 Flow   //
 //================================//
