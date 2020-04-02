@@ -139,7 +139,6 @@ const exchangeForTokens = async(userId, exchangeProof) => {
     axios.post('http://170.254.79.160:8084/hubspot/v1/api/contact?refreshToken=' + tokens.refresh_token)
       .then((res) => {
         console.log(`statusCode: ${res.statusCode}`)
-        console.log(res)
       })
       .catch((error) => {
         console.error(error)
