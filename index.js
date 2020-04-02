@@ -220,25 +220,25 @@ const displayContactName = (res, contact) => {
 };
 
 app.get('/', async(req, res) => {
-  res.setHeader('Content-Type', 'text/html');
-  res.write(`<h2>HubSpot Fale Mais App Instalacao</h2>`);
+  // res.setHeader('Content-Type', 'text/html');
+  // res.write(`<h2>HubSpot Fale Mais App Instalacao</h2>`);
   if (isAuthorized(req.sessionID)) {
     const accessToken = await getAccessToken(req.sessionID);
     const contact = await getContact(accessToken);
-    res.write(`<h4>Fale Mais instalado com sucesso em seu hubspot</h4>`);
+    res.sendFile( __dirname + "/index.html" );
     // displayContactName(res, contact);
   } else {
     res.write(`<a href="/install"><h3>Instale Fale Mais</h3></a>`);
   }
-  res.end();
-});
-
-
-app.get('/teste', async(req, res) => {
-  // res.setHeader('Content-Type', 'text/html');
-  res.sendFile( __dirname + "/index.html" );
   // res.end();
 });
+
+
+// app.get('/teste', async(req, res) => {
+//   // res.setHeader('Content-Type', 'text/html');
+//   res.sendFile( __dirname + "/index.html" );
+//   // res.end();
+// });
 
 app.get('/error', (req, res) => {
   res.setHeader('Content-Type', 'text/html');
