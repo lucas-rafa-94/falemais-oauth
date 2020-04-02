@@ -234,6 +234,13 @@ app.get('/', async(req, res) => {
   res.end();
 });
 
+
+app.get('/teste', async(req, res) => {
+  res.setHeader('Content-Type', 'text/html');
+  res.sendFile('index.html');
+  res.end();
+});
+
 app.get('/error', (req, res) => {
   res.setHeader('Content-Type', 'text/html');
   res.write(`<h4>Error: ${req.query.msg}</h4>`);
