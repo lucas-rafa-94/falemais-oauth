@@ -236,7 +236,7 @@ app.get('/', async(req, res) => {
 
 
 app.get('/teste', async(req, res) => {
-  res.setHeader('Content-Type', 'text/html');
+  // res.setHeader('Content-Type', 'text/html');
   res.sendFile( __dirname + "/index.html" );
   res.end();
 });
