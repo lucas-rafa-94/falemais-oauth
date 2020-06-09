@@ -9,9 +9,6 @@ const session = require('express-session');
 const opn = require('open');
 const app = express();
 
-const key = fs.readFileSync('/home/falemais/key.pem');
-
-const cert = fs.readFileSync('/home/falemais/cert.pem');
 
 const PORT = 3000;
 
@@ -23,6 +20,10 @@ const accessTokenCache = new NodeCache({
 if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET) {
   throw new Error('Missing CLIENT_ID or CLIENT_SECRET environment variable.')
 }
+
+const key = fs.readFileSync('/etc/letsencrypt/live/hubapi.falemaisvoip.com.br/privkey.pem');
+
+const cert = fs.readFileSync('/etc/letsencrypt/live/hubapi.falemaisvoip.com.br/fullchain.pem');
 
 //===========================================================================//
 //  HUBSPOT APP CONFIGURATION
